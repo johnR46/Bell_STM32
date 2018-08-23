@@ -15,46 +15,54 @@ void convert_textto_buffer(char *str) {
   int count = 0;
   int Line = 0;
   int Size = 0;
-
+ 
   while (*str != '\0') {
-
-    count++;
+	count++;
     str++;
-
-
-    if (Line == line) {
-      break;
-    } else {
-      if (count != Size) {
-        Buffer[Line][Size] = *str;
-        Size++;
-      }
-      if (Size == size) {
-        Line++;
-        Size = 0;
-        count = 0;
-
-      }
-    }
-  }
-
-
-
-
-
-
+    
+    if(*str == '\r'){
+    	Buffer[Line][Size] = '\r';
+    	Size++;
+    	Buffer[Line][Size] = '\n';
+    	
+		str++;
+		Line++;
+		Size = 0;
+		count = 0;
+		
+		
+			
+	}
+	
+	if(Line == line){
+		break;
+	}
+	if(Size == size){
+		Line++;
+		Size = 0;
+		
+	}
+	
+	if(count != Size){
+		Buffer[Line][Size] = *str;
+		Size++;
+	}
 }
-
+}
 
 
 void main() {
 
-  strcpy(text, " The Company runs official accounts on social mediassssss  understanding that social media is a place for communication based on a tie among individuals and that information is disclosed to the public and cannot be completely eliminated once dispatched, encourThe Company runs official accounts on social media by understanding that social media is a place for communication based on a tie among individuals and that information is disclosed to the public and cannot be completely eliminated once dispatched, encourThe Company runs official accounts on social media by understanding that social media is a place for communication based on a tie among individuals and that information is disclosed to the public and cannot be completely eliminated once dispatched, encourThe Company runs official accounts on social media by understanding that social media is a place for communication based on a tie among individuals and that information is disclosed to the public and cannot be completely eliminated once dispatched, encourTheThe Company runs official accounts on social media by understanding that social media is a place for communication based on a tie among individuals and that information is disclosed to the public and cannot be completely eliminated once dispatched, encourThe Company runs official accounts on social media by understanding that social media is a place for communication based on a tie among individuals and that information is disclosed to the public and cannot be completely eliminated once dispatched, encourThe Company runs official accounts on social media by understanding that social media is a place for communication based on a tie among individuals and that information is disclosed to the public and cannot be completely eliminated once dispatched, encourThe Company runs official accounts on social media by understanding that social media is a place for communication based on a tie among individuals and that information is disclosed to the public and cannot be completely eliminated once dispatched, encourTheThe Company runs official accounts on social media by understanding that social media is a place for communication based on a tie among individuals and that information is disclosed to the public and cannot be completely eliminated once dispatched, encourThe Company runs official accounts on social media by understanding that social media is a place for communication based on a tie among individuals and that information is disclosed to the public and cannot be completely eliminated once dispatched, encourThe Company runs official accounts on social media by understanding that social media is a place for communication based on a tie among individuals and that information is disclosed to the public and cannot be completely eliminated once dispatched, encourThe Company runs official accounts on social media by understanding that social media is a place for communication based on a tie among individuals and that information is disclosed to the public and cannot be completely eliminated once dispatched, encourTheThe Company runs official accounts on social media by understanding that social media is a place for communication based on a tie among individuals and that information is disclosed to the public and cannot be completely eliminated once dispatched, encourThe Company runs official accounts on social media by understanding that social media is a place for communication based on a tie among individuals and that information is disclosed to the public and cannot be completely eliminated once dispatched, encourThe Company runs official accounts on social media by understanding that social media is a place for communication based on a tie among individuals and that information is disclosed to the public and cannot be completely eliminated once dispatched, encourThe Company runs official accounts on social media by understanding that social media is a place for communication based on a tie among individuals and that information is disclosed to the public and cannot be completely eliminated once dispatched, encourThe");
-
+  strcpy(text,"aaaaaaaaaaaaaaaaaaaaaaaa\r\nbbbbbbbbbbbbbbbbbbbbb\r\nccccccccccc\r\n\r\n\r\nTEST");
 
   convert_textto_buffer(text);
 
-  printf("%s", Buffer);
+printf("%s",Buffer[0]); // “aaaaaaaaaaaaaaaaaaaaaaaaa”
+printf("%s",Buffer[1]); // “bbbbbbbbbbbbbbbbbbbbb”
+printf("%s",Buffer[2]); // “ccccccccccc”
+printf("%s",Buffer[3]); // ""
+printf("%s",Buffer[4]); // ""
+printf("%s",Buffer[5]); //“TEST”
 
 
 
