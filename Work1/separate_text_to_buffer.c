@@ -1,70 +1,60 @@
-#include<stdio.h>
-#include<string.h>
-
-
+#include <stdio.h>
+#include <string.h>
 
 char text[4096]; //
-char dest[40]; // test
+char dest[40];   // test
 #define line 96
-#define size 40
-char Buffer[line][size];
+#define LineSize_ 40
+char Buffer[line][LineSize_];
 
-
-
-void convert_textto_buffer(char *str) {
-  int count = 0;
-  int Line = 0;
-  int Size = 0;
- 
-  while (*str != '\0') {
-	count++;
-    str++;
-    
-    if(*str == '\r'){
-    	Buffer[Line][Size] = '\r';
-    	Size++;
-    	Buffer[Line][Size] = '\n';
-    	
+void convert_textto_buffer(char *str)
+{
+	int count = 0;
+	int Line = 0;
+	int Size_ = 0;
+	while (*str != '\0')
+	{
+		count++;
 		str++;
-		Line++;
-		Size = 0;
-		count = 0;
-		
-		
-			
-	}
-	
-	if(Line == line){
-		break;
-	}
-	if(Size == size){
-		Line++;
-		Size = 0;
-		
-	}
-	
-	if(count != Size){
-		Buffer[Line][Size] = *str;
-		Size++;
+		if (*str == '\r')
+		{
+			Buffer[Line][Size_] = '\r';
+			Size_++;
+			Buffer[Line][Size_] = '\n';
+			str++;
+			Line++;
+			Size_ = 0;
+			count = 0;
+		}
+		if (Line == line)
+		{
+			break;
+		}
+		if (Size_ == LineSize_)
+		{
+			Line++;
+			Size_ = 0;
+		}
+		if (count != Size_)
+		{
+			Buffer[Line][Size_] = *str;
+			Size_++;
+		}
 	}
 }
+
+void main()
+{
+
+	strcpy(text, "\r\n\r\nbbbbbbbbffffffffffffffffffffffffffffpppppppppppppppppppppppppfffffffffffffffffbbbbbbbbbbbbb\r\nccccccccccc\r\n\r\n\r\nTEST\r\ngg");
+
+	convert_textto_buffer(text);
+
+	printf("%s", Buffer[0]); // ï¿½aaaaaaaaaaaaaaaaaaaaaaaaaï¿½
+	printf("%s", Buffer[1]); // ï¿½bbbbbbbbbbbbbbbbbbbbbï¿½
+	printf("%s", Buffer[2]); // ï¿½cccccccccccï¿½
+	printf("%s", Buffer[3]); // ""
+	printf("%s", Buffer[4]); // ""
+	printf("%s", Buffer[5]); //ï¿½TESTï¿½
+	printf("%s", Buffer[6]); //ï¿½TESTï¿½
 }
-
-
-void main() {
-
-
-  strcpy(text,"aaaaaaaaaaaaaaaaaaaaaaaa\r\nbbbbbbbbbbbbbbbbbbbbb\r\nccccccccccc\r\n\r\n\r\nTEST");
-
-  convert_textto_buffer(text);
-
-printf("%s",Buffer[0]); // “aaaaaaaaaaaaaaaaaaaaaaaaa”
-printf("%s",Buffer[1]); // “bbbbbbbbbbbbbbbbbbbbb”
-printf("%s",Buffer[2]); // “ccccccccccc”
-printf("%s",Buffer[3]); // ""
-printf("%s",Buffer[4]); // ""
-printf("%s",Buffer[5]); //“TEST”
-
-}
-
-
