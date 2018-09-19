@@ -1,0 +1,87 @@
+VERSION
+7
+
+COMMSETTINGS
+0
+1
+2
+115200
+2
+63
+4
+0
+0
+
+COMMDISPLAY
+0
+
+SEND
+0 
+get_status
+00 57 AB 22
+0
+5
+
+SEND
+2 
+checkConnection
+00 57 AB 06 57
+0
+5
+
+SEND
+4 
+setSDCard
+00 57 AB 15 03
+0
+5
+
+SEND
+6 
+USBDiskMount
+00 57 AB 31
+0
+5
+
+SEND
+8 
+setFileName
+00 57 AB 2F 42 42 43
+0
+5
+
+SEND
+10 
+Dir_Create
+00 57 AB 40
+0
+5
+
+SEND
+12 
+FileClose
+00 57 AB 36 00
+0
+5
+
+SEND
+14 
+File Open
+00 57 AB 32
+0
+5
+
+SEND
+16 
+
+
+0
+5
+
+SEND
+18 
+
+
+0
+5
+
