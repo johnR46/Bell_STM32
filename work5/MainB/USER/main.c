@@ -355,6 +355,7 @@ int unicodeTable[] = {
   Return         : None
   Attention      : None
 *******************************************************************************/
+
 #define MAX_LINE 60
 int line;
 int EnterLine(void);
@@ -392,6 +393,7 @@ int EnterLine() {
         if (curline == 3) {
           curline = 0;
         }
+        printf("\r\n EnterLine : %s/%d\r\n",line,MAX_LINE);
       }
       clearKeyValue(); 
     }
@@ -2432,7 +2434,7 @@ void saveName()
 int unicode_to_ASCII(int key)
 {
   int asciT = 0;
-  printf("\r\nkey B is (%d) \r\n", key);
+  //printf("\r\nkey B is (%d) \r\n", key);
   for (asciT = 0; asciT < 255 && asciT < sizeof(unicodeTable); asciT++)
   {
     if (key == unicodeTable[asciT])
@@ -2442,7 +2444,7 @@ int unicode_to_ASCII(int key)
     }
   }
 
-  printf("ascii is %c HEX:%x\r\n", asciT, asciT);
+  //printf("ascii is %c HEX:%x\r\n", asciT, asciT);
   return asciT;
 }
 //-----------new----------
